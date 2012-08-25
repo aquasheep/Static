@@ -10,7 +10,11 @@ public class StaticPixel {
 	/** How often the pixel will change colors randomly (in units of frames per change) */
 	private float flickerRate;
 	private Color color;
-	private boolean paused,colored;
+	private boolean paused;
+	/** Which color channel is currently enabled:
+	 *  0 - grayscale, 1 - red, 2 - green, 3 - blue, 4 - yellow, 5 - purple, 6 - turquoise, 7 - all
+	 */
+	private int colorChannel = 0;
 	
 	
 	public StaticPixel(Vector2 pos) {
@@ -28,11 +32,43 @@ public class StaticPixel {
 	//TODO Optimize this function --> this and rendering are two biggest resource hogs
 	public void update(float frameCounter) {
 		if (frameCounter >= flickerRate) {
-			float gray = (float)(Math.random()*1f);
-			if (colored)
-				color.set(gray,(float)Math.random()*1f,(float)Math.random()*1f,1f);
-			else
-				color.set(gray,gray,gray,1f);
+			float randColor1 = (float)(Math.random()*1f);
+			float randColor2 = (float)(Math.random()*1f);
+			switch(colorChannel) {
+				case 0:
+					//Grayscale
+					color.set(randColor1,randColor1,randColor1,1f);
+					break;
+				case 1:
+					//Red
+					color.set(randColor1,0,0,1f);
+					break;
+				case 2:
+					//Green
+					color.set(0,randColor1,0,1f);
+					break;
+				case 3:
+					//Blue
+					color.set(0,0,randColor1,1f);
+					break;
+				case 4:
+					//Yellow
+					color.set(randColor1,randColor2,0,1f);
+					break;
+				case 5:
+					//Purple
+					color.set(randColor1,0,randColor2,1f);
+					break;
+				case 6:
+					//Turquoise
+					color.set(0,randColor1,randColor2,1f);
+					break;
+				case 7:
+					//All colors
+					float randColor3 = (float)(Math.random()*1f);
+					color.set(randColor1,randColor2,randColor3,1f);
+					break;
+			}
 		}
 	}
 	
@@ -49,10 +85,6 @@ public class StaticPixel {
 	 * 
 	 * @return this StaticPixel for chaining
 	 */
-	public StaticPixel toggleColored() {
-		colored = !colored;
-		return this;
-	}
 	
 	//Getters and setters
 	public boolean getPaused() {
@@ -62,15 +94,6 @@ public class StaticPixel {
 	public boolean setPaused(boolean b) {
 		paused = b;
 		return paused;
-	}
-	
-	public boolean getColored() {
-		return colored;
-	}
-	
-	public boolean setColored(boolean b) {
-		colored = b;
-		return colored;
 	}
 	
 	public Vector2 getPosition() {
@@ -84,6 +107,13 @@ public class StaticPixel {
 	public float getFlickerRate() {
 		return flickerRate;
 	}
-
+	
+	public void applyColor(int button, int channel) {
+		//If not left mouse button, default to grayscale
+		if (button==0)
+			colorChannel = channel;
+		else
+			colorChannel = 0;
+	}
 	
 }

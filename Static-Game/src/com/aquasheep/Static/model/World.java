@@ -15,6 +15,8 @@ public class World {
 	private float volume;
 	private Tools tool = Tools.PAUSE;
 	private Circle toolCircle;
+	/** Which color channel the color tool is currently using */
+	private int currentColorChannel = 7;
 	
 	public enum Tools {
 		PAUSE,COLOR
@@ -80,7 +82,7 @@ public class World {
 					pixel.setPaused(button==0);
 				}
 				else if (tool==Tools.COLOR && button!=2) {
-					pixel.setColored(button==0);
+					pixel.applyColor(button,currentColorChannel);
 				}
 			}
 		}
@@ -91,5 +93,13 @@ public class World {
 			tool = Tools.PAUSE;
 		else if (tool == Tools.PAUSE)
 			tool = Tools.COLOR;
+	}
+	
+	public void setColorChannel(int newChannel) {
+		currentColorChannel = newChannel;
+	}
+	
+	public int getColorChannel() {
+		return currentColorChannel;
 	}
 }

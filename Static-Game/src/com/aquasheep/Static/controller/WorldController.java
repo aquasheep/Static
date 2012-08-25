@@ -30,6 +30,34 @@ public class WorldController implements InputProcessor {
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.SHIFT_LEFT)
 			world.switchTool();
+		//Handle color channel changes
+		switch(keycode) {
+			case Keys.NUM_0:
+				world.setColorChannel(0);
+				break;
+			case Keys.NUM_1:
+				world.setColorChannel(1);
+				break;
+			case Keys.NUM_2:
+				world.setColorChannel(2);
+				break;
+			case Keys.NUM_3:
+				world.setColorChannel(3);
+				break;
+			case Keys.NUM_4:
+				world.setColorChannel(4);
+				break;
+			case Keys.NUM_5:
+				world.setColorChannel(5);
+				break;
+			case Keys.NUM_6:
+				world.setColorChannel(6);
+				break;
+			case Keys.NUM_7:
+				world.setColorChannel(7);
+				break;
+			default: break;
+		}
 		return true;
 	}
 
