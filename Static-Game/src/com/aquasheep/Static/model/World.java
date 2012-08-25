@@ -22,6 +22,10 @@ public class World {
 		PAUSE,COLOR
 	}
 	
+	//TODO add hue/saturation adjustment for brighter and darker colors
+	//TODO more optimizations to allow to run on Android
+	//TODO fix android not displaying the game
+	//TODO re-insert splash screen
 	public World(int w, int h) {
 		width = w;
 		height = h;
