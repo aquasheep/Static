@@ -32,6 +32,8 @@ public class GameScreen extends AbstractScreen {
 		//Reset frameCounter every second
 		frameCounter = (1 + frameCounter) % (1/delta);
 		
+		//Continue using tool if mouse button is down
+		controller.isMouseButtonDown();
 		world.updatePixels(frameCounter);
 		renderer.render(world,frameCounter);
 	}

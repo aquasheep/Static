@@ -16,6 +16,15 @@ public class WorldController implements InputProcessor {
 		Gdx.input.setInputProcessor(this);
 	}
 	
+	/** Check to see if a mouse button is down, and if so, applies current tool */
+	public boolean isMouseButtonDown() {
+		if (Gdx.input.isButtonPressed(0))
+			world.applyTool(0);
+		else if (Gdx.input.isButtonPressed(1))
+			world.applyTool(1);
+		return true;
+	}
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
