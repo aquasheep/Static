@@ -35,14 +35,31 @@ public class StaticPixel {
 		}
 	}
 	
-	//Getters and setters
+	/** Sets the calling StaticPixel to paused or unpaused
+	 * 
+	 * @return this StaticPixel for chaining
+	 */
 	public StaticPixel togglePaused() {
 		paused = !paused;
 		return this;
 	}
 	
+	/** Sets the calling StaticPixel to colored or black and white 
+	 * 
+	 * @return this StaticPixel for chaining
+	 */
+	public StaticPixel toggleColored() {
+		colored = !colored;
+		return this;
+	}
+	
+	//Getters and settors
 	public boolean getPaused() {
 		return paused;
+	}
+	
+	public boolean getColored() {
+		return colored;
 	}
 	
 	public Vector2 getPosition() {

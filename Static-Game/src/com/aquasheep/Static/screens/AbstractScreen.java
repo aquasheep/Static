@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL10;
 
 public abstract class AbstractScreen implements Screen {
 
-	private StaticGame game;
+	protected StaticGame game;
 	
 	public AbstractScreen(StaticGame game) {
 		this.game = game;
