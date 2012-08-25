@@ -16,9 +16,8 @@ public class StaticPixel {
 	public StaticPixel(Vector2 pos) {
 		position = pos;
 		//Default color is a random grayscale
-		float gray = (float)Math.floor(Math.random()*256);
-		//TODO possible optimization: only use colorRGBA, not the color object
-		color = new Color(gray,gray,gray,255);
+		float gray = (float)Math.floor(Math.random()*1f);
+		color = new Color(gray,gray,gray,1f);
 		flickerRate = 1;
 	}
 	
@@ -26,13 +25,14 @@ public class StaticPixel {
 	 * 
 	 * @param frameCounter
 	 */
+	//TODO Optimize this function --> this and rendering are two biggest resource hogs
 	public void update(float frameCounter) {
 		if (frameCounter >= flickerRate) {
 			float gray = (float)(Math.random()*1f);
 			if (colored)
-				color = new Color(gray,(float)Math.random()*1f,(float)Math.random()*1f,1f);
+				color.set(gray,(float)Math.random()*1f,(float)Math.random()*1f,1f);
 			else
-				color = new Color(gray,gray,gray,1f);
+				color.set(gray,gray,gray,1f);
 		}
 	}
 	

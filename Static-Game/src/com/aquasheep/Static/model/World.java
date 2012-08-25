@@ -1,5 +1,6 @@
 package com.aquasheep.Static.model;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -7,6 +8,7 @@ public class World {
 
 	private int width,height;
 	private Array<StaticPixel> pixels = new Array<StaticPixel>();
+	private ShapeRenderer renderer;
 	
 	public World(int w, int h) {
 		width = w;
@@ -18,6 +20,7 @@ public class World {
 				pixels.add(new StaticPixel(new Vector2(x,y)));
 			}
 		}
+		renderer = new ShapeRenderer();
 	}
 	
 	/** Calls update function on every StaticPixel object in world */
