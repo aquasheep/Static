@@ -7,5 +7,5 @@ public class SplashScreen extends AbstractScreen {
 	public SplashScreen(StaticGame game) {
 		super(game);
 	}
-	
+
 }
