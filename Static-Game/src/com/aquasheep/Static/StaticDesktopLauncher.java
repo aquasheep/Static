@@ -13,7 +13,7 @@ public class StaticDesktopLauncher {
 		String title = "Static";
 		
 		/** window's size */
-		int width = 800, height = 600;
+		int width = 512, height = 512;
 		
 		/** Whether or not to use OpenGL ES 2.0 */
 		boolean useOpenGLES20 = false;

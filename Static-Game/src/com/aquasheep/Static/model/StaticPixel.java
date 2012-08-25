@@ -10,6 +10,8 @@ public class StaticPixel {
 	/** How often the pixel will change colors randomly (in units of changes per frame) */
 	private float flickerRate;
 	private Color color;
+	/** Color value in RGBA8888 format */
+	private int colorRGBA;
 	private boolean paused,colored;
 	
 	
@@ -17,7 +19,9 @@ public class StaticPixel {
 		position = pos;
 		//Default color is a random grayscale
 		float gray = (float)Math.floor(Math.random()*256);
-		color = new Color(gray,gray,gray,1f);
+		//TODO possible optimization: only use colorRGBA, not the color object
+		color = new Color(gray,gray,gray,255);
+		colorRGBA = Color.rgba8888(color);
 		flickerRate = 1;
 	}
 	
@@ -33,6 +37,7 @@ public class StaticPixel {
 			else
 				color = new Color(gray,gray,gray,255);
 		}
+		colorRGBA = Color.rgba8888(color);
 	}
 	
 	/** Sets the calling StaticPixel to paused or unpaused
@@ -66,7 +71,7 @@ public class StaticPixel {
 		return position;
 	}
 
-	public Color getColor() {
-		return color;
+	public int getColor() {
+		return colorRGBA;
 	}
 }
