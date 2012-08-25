@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 public class World {
 
 	private int width,height;
-	private Array<StaticPixel> pixels;
+	private Array<StaticPixel> pixels = new Array<StaticPixel>();
 	
 	public World(int w, int h) {
 		width = w;
@@ -29,6 +29,14 @@ public class World {
 	
 	public Array<StaticPixel> getPixels() {
 		return pixels;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
 	}
 	
 }

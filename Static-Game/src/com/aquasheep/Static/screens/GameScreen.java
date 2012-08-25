@@ -12,20 +12,22 @@ public class GameScreen extends AbstractScreen {
 	
 	public GameScreen(StaticGame game) {
 		super(game);
-		
-		renderer = new WorldRenderer();
 	}
 
 	@Override
 	public void resize(int w, int h) {
+		super.resize(w,h);
 		frameCounter = 0;
 		world = new World(w, h);
+		renderer = new WorldRenderer(world);
 	}
 	
 	@Override
 	public void render(float delta) {
+		super.render(delta);
+		
 		//Reset frameCounter every second
-		frameCounter = (1 + frameCounter) % 1/delta;
+		frameCounter = (1 + frameCounter) % (1/delta);
 		
 		world.updatePixels(frameCounter);
 		renderer.render(world);
