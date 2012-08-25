@@ -18,8 +18,6 @@ public class GameScreen extends AbstractScreen {
 	public GameScreen(StaticGame game) {
 		super(game);
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Static1.ogg"));
-		music.setVolume(0.4f);
-		music.setLooping(true);
 	}
 
 	@Override
@@ -30,6 +28,8 @@ public class GameScreen extends AbstractScreen {
 		renderer = new WorldRenderer(world);
 		controller = new WorldController(game,world);
 		music.play();
+		music.setVolume(0.4f);
+		music.setLooping(true);
 	}
 	
 	@Override
