@@ -18,7 +18,7 @@ public class StaticPixel {
 		//Default color is a random grayscale
 		float gray = (float)Math.floor(Math.random()*1f);
 		color = new Color(gray,gray,gray,1f);
-		flickerRate = 1;
+		flickerRate = 10;
 	}
 	
 	/** Provides new random color of pixel based on flickerRate
@@ -69,5 +69,9 @@ public class StaticPixel {
 
 	public Color getColor() {
 		return color;
+	}
+
+	public float getFlickerRate() {
+		return flickerRate;
 	}
 }

@@ -18,11 +18,14 @@ public class WorldRenderer {
 		renderer = new ShapeRenderer();
 	}
 	
-	public void render(World world) {
+	public void render(World world, float frameCounter) {
 		renderer.begin(ShapeType.Point);
 		for (StaticPixel pixel : world.getPixels()) {
-			renderer.setColor(pixel.getColor());
-			renderer.point(pixel.getPosition().x, pixel.getPosition().y,0);
+			//Only render if it is time for that pixel to render, should save cpu
+			if (frameCounter >= pixel.getFlickerRate()) {
+				renderer.setColor(pixel.getColor());
+				renderer.point(pixel.getPosition().x, pixel.getPosition().y,0);
+			}
 		}
 		renderer.end();
 	}

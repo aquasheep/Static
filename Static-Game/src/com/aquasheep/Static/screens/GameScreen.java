@@ -30,7 +30,7 @@ public class GameScreen extends AbstractScreen {
 		frameCounter = (1 + frameCounter) % (1/delta);
 		
 		world.updatePixels(frameCounter);
-		renderer.render(world);
+		renderer.render(world,frameCounter);
 	}
 	
 }
