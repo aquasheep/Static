@@ -1,6 +1,7 @@
 package com.aquasheep.Static.screens;
 
 import com.aquasheep.Static.StaticGame;
+import com.aquasheep.Static.controller.WorldController;
 import com.aquasheep.Static.model.World;
 import com.aquasheep.Static.view.WorldRenderer;
 
@@ -8,6 +9,7 @@ public class GameScreen extends AbstractScreen {
 
 	private World world;
 	private WorldRenderer renderer;
+	private WorldController controller;
 	private float frameCounter;
 	
 	public GameScreen(StaticGame game) {
@@ -20,6 +22,7 @@ public class GameScreen extends AbstractScreen {
 		frameCounter = 0;
 		world = new World(w, h);
 		renderer = new WorldRenderer(world);
+		controller = new WorldController(game,world);
 	}
 	
 	@Override

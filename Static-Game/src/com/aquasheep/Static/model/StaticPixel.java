@@ -59,7 +59,17 @@ public class StaticPixel {
 		return paused;
 	}
 	
+	public boolean setPaused(boolean b) {
+		paused = b;
+		return paused;
+	}
+	
 	public boolean getColored() {
+		return colored;
+	}
+	
+	public boolean setColored(boolean b) {
+		colored = b;
 		return colored;
 	}
 	
@@ -74,4 +84,6 @@ public class StaticPixel {
 	public float getFlickerRate() {
 		return flickerRate;
 	}
+
+	
 }

@@ -31,6 +31,7 @@ public class WorldRenderer {
 		}
 		renderer.end();
 		//Render mouse circle for tools
+		//TODO currently, circle renders faster than background and therefore lags, need to undo circle some way
 		renderer.begin(ShapeType.Circle);
 		renderer.setColor(new Color(1f,0f,0f,0.3f));
 		renderer.circle(Gdx.input.getX(), world.getHeight()-Gdx.input.getY(), world.getVolume());
