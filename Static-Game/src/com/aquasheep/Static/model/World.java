@@ -9,6 +9,8 @@ public class World {
 	private int width,height;
 	private Array<StaticPixel> pixels = new Array<StaticPixel>();
 	private ShapeRenderer renderer;
+	/** The area to be affected by the current tool */
+	private float volume;
 	
 	public World(int w, int h) {
 		width = w;
@@ -21,6 +23,7 @@ public class World {
 			}
 		}
 		renderer = new ShapeRenderer();
+		volume = 10;
 	}
 	
 	/** Calls update function on every StaticPixel object in world */
@@ -40,6 +43,16 @@ public class World {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public float getVolume() {
+		return volume;
+	}
+	
+	public float setVolume(float toAdd) {
+		if (volume+toAdd >= 1 && volume+toAdd <= 100)
+			volume+=toAdd;
+		return volume;
 	}
 	
 }
