@@ -85,4 +85,11 @@ public class World {
 			}
 		}
 	}
+	
+	public void switchTool() {
+		if (tool == Tools.COLOR)
+			tool = Tools.PAUSE;
+		else if (tool == Tools.PAUSE)
+			tool = Tools.COLOR;
+	}
 }

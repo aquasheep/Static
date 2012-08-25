@@ -3,6 +3,7 @@ package com.aquasheep.Static.controller;
 import com.aquasheep.Static.StaticGame;
 import com.aquasheep.Static.model.World;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 
 public class WorldController implements InputProcessor {
@@ -27,8 +28,9 @@ public class WorldController implements InputProcessor {
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		// TODO Auto-generated method stub
-		return false;
+		if (keycode == Keys.SHIFT_LEFT)
+			world.switchTool();
+		return true;
 	}
 
 	@Override
