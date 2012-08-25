@@ -28,11 +28,11 @@ public class StaticPixel {
 	 */
 	public void update(float frameCounter) {
 		if (frameCounter >= flickerRate) {
-			float gray = (float)Math.floor(Math.random()*256);
+			float gray = (float)(Math.random()*1f);
 			if (colored)
-				color = new Color(gray,(float)Math.floor(Math.random()*256),(float)Math.floor(Math.random()*256),255);
+				color = new Color(gray,(float)Math.random()*1f,(float)Math.random()*1f,1f);
 			else
-				color = new Color(gray,gray,gray,255);
+				color = new Color(gray,gray,gray,1f);
 		}
 	}
 	
