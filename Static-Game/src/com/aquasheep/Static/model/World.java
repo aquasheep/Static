@@ -20,4 +20,15 @@ public class World {
 		}
 	}
 	
+	/** Calls update function on every StaticPixel object in world */
+	public void updatePixels(float frameCounter) {
+		for (StaticPixel pixel : pixels) {
+			pixel.update(frameCounter);
+		}
+	}
+	
+	public Array<StaticPixel> getPixels() {
+		return pixels;
+	}
+	
 }

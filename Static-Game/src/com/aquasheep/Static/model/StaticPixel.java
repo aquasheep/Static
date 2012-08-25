@@ -65,4 +65,8 @@ public class StaticPixel {
 	public Vector2 getPosition() {
 		return position;
 	}
+
+	public Color getColor() {
+		return color;
+	}
 }
