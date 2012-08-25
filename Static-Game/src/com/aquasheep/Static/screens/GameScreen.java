@@ -4,6 +4,8 @@ import com.aquasheep.Static.StaticGame;
 import com.aquasheep.Static.controller.WorldController;
 import com.aquasheep.Static.model.World;
 import com.aquasheep.Static.view.WorldRenderer;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 public class GameScreen extends AbstractScreen {
 
@@ -11,9 +13,13 @@ public class GameScreen extends AbstractScreen {
 	private WorldRenderer renderer;
 	private WorldController controller;
 	private float frameCounter;
+	Music music;
 	
 	public GameScreen(StaticGame game) {
 		super(game);
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Static1.ogg"));
+		music.setVolume(0.4f);
+		music.setLooping(true);
 	}
 
 	@Override
@@ -23,6 +29,7 @@ public class GameScreen extends AbstractScreen {
 		world = new World(w, h);
 		renderer = new WorldRenderer(world);
 		controller = new WorldController(game,world);
+		music.play();
 	}
 	
 	@Override
@@ -36,6 +43,11 @@ public class GameScreen extends AbstractScreen {
 		controller.isMouseButtonDown();
 		world.updatePixels(frameCounter);
 		renderer.render(world,frameCounter);
+	}
+	
+	@Override
+	public void dispose() {
+		music.dispose();
 	}
 	
 }
