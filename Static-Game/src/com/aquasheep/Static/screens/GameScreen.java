@@ -13,6 +13,7 @@ public class GameScreen extends AbstractScreen {
 	private WorldRenderer renderer;
 	private WorldController controller;
 	private float frameCounter;
+	private int timeElapsed;
 	Music music;
 	
 	public GameScreen(StaticGame game) {
@@ -38,6 +39,8 @@ public class GameScreen extends AbstractScreen {
 		
 		//Reset frameCounter every second
 		frameCounter = (1 + frameCounter) % (1/delta);
+		if (frameCounter == 0)
+			++timeElapsed;
 		
 		//Continue using tool if mouse button is down
 		controller.isMouseButtonDown();

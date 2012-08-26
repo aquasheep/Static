@@ -10,7 +10,6 @@ public class World {
 
 	private int width,height;
 	private Array<StaticPixel> pixels = new Array<StaticPixel>();
-	private ShapeRenderer renderer;
 	/** The area to be affected by the current tool */
 	private float volume;
 	private Tools tool = Tools.PAUSE;
@@ -27,16 +26,15 @@ public class World {
 	//TODO fix android not displaying the game
 	//TODO re-insert splash screen
 	public World(int w, int h) {
-		width = w;
-		height = h;
+		width = w-100; //Save 100 pixels for HUD
+		height = h-100;
 		
-		//Create StaticPixels for every pixel shown
-		for (float x = 0; x < width; ++x) {
-			for (float y = 0; y < height; ++y) {
+		//Create StaticPixels for every pixel except 100 for HUD
+		for (float x = 100; x < width; ++x) {
+			for (float y = 100; y < height; ++y) {
 				pixels.add(new StaticPixel(new Vector2(x,y)));
 			}
 		}
-		renderer = new ShapeRenderer();
 		volume = 10;
 		//TODO render this instead of a new circle in the renderer
 		toolCircle = new Circle(Gdx.input.getX(),Gdx.input.getY(),volume);
