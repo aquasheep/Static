@@ -47,21 +47,20 @@ public class WorldRenderer {
 		renderText();
 		spriteBatch.end();
 		
-		//Render mouse circle for tools
-		if (world.getToolSelection().equals("circle")) {
-		//TODO currently, circle renders faster than background and therefore lags, need to undo circle some way
-			renderer.begin(ShapeType.Circle);
-			renderer.setColor(new Color(1f,0f,0f,0.3f));
-			renderer.circle(Gdx.input.getX(), world.getHeight()-Gdx.input.getY()+100, world.getVolume());
-			renderer.end();
-		} else if (world.getToolSelection().equals("rect")) {
-			renderer.begin(ShapeType.Rectangle);
-			renderer.setColor(new Color(1f,0f,0f,0.1f));
-			renderer.rect(Gdx.input.getX()-world.getVolume()/2, 
-					world.getHeight()-Gdx.input.getY()-world.getVolume()/2+100, 
-					world.getVolume(), world.getVolume());
-			renderer.end();
-		}
+//		if (world.getToolSelection().equals("circle")) {
+//		//TODO currently, circle renders faster than background and therefore lags, need to undo circle some way
+//			renderer.begin(ShapeType.Circle);
+//			renderer.setColor(new Color(1f,0f,0f,0.3f));
+//			renderer.circle(Gdx.input.getX(), world.getHeight()-Gdx.input.getY()+100, world.getVolume());
+//			renderer.end();
+//		} else if (world.getToolSelection().equals("rect")) {
+//			renderer.begin(ShapeType.Rectangle);
+//			renderer.setColor(new Color(1f,0f,0f,0.1f));
+//			renderer.rect(Gdx.input.getX()-world.getVolume()/2, 
+//					world.getHeight()-Gdx.input.getY()-world.getVolume()/2+100, 
+//					world.getVolume(), world.getVolume());
+//			renderer.end();
+//		}
 	}
 	
 	/** Renders UI text */
