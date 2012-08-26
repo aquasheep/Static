@@ -2,6 +2,7 @@ package com.aquasheep.Static.controller;
 
 import com.aquasheep.Static.StaticGame;
 import com.aquasheep.Static.model.World;
+import com.aquasheep.Static.screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -56,6 +57,12 @@ public class WorldController implements InputProcessor {
 		//Pause/resume the entire screen on spacebar hit 
 		else if (keycode == Keys.SPACE)
 			world.toggleRendering();
+		else if (keycode == Keys.M) {
+			if (GameScreen.gameMusic.isPlaying())
+				GameScreen.gameMusic.pause();
+			else
+				GameScreen.gameMusic.play();
+		}
 		//Handle color channel changes
 		else switch(keycode) {
 			case Keys.NUM_0:

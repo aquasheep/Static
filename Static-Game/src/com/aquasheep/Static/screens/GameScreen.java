@@ -14,11 +14,11 @@ public class GameScreen extends AbstractScreen {
 	private WorldController controller;
 	private float frameCounter;
 	private int timeElapsed;
-	Music music;
+	public static Music gameMusic;
 	
 	public GameScreen(StaticGame game) {
 		super(game);
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Static1.ogg"));
+		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/Static1.ogg"));
 	}
 
 	@Override
@@ -28,9 +28,9 @@ public class GameScreen extends AbstractScreen {
 		world = new World(w, h);
 		renderer = new WorldRenderer(world);
 		controller = new WorldController(game,world);
-		music.play();
-		music.setVolume(0.4f);
-		music.setLooping(true);
+		gameMusic.play();
+		gameMusic.setVolume(0.4f);
+		gameMusic.setLooping(true);
 	}
 	
 	@Override
@@ -52,7 +52,8 @@ public class GameScreen extends AbstractScreen {
 	
 	@Override
 	public void dispose() {
-		music.dispose();
+		gameMusic.dispose();
 	}
+
 	
 }
