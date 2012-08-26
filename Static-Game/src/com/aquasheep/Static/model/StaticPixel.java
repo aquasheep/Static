@@ -36,7 +36,7 @@ public class StaticPixel {
 	 */
 	//TODO Optimize this function --> this and rendering are two biggest resource hogs
 	public void update(float frameCounter) {
-		if (frameCounter >= flickerRate) {
+		if (frameCounter >= flickerRate && !paused) {
 			float randColor1 = (float)(Math.random()*1f);
 			float randColor2 = (float)(Math.random()*1f);
 			switch(colorChannel) {

@@ -4,7 +4,6 @@ import com.aquasheep.Static.StaticGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public abstract class AbstractScreen implements Screen {

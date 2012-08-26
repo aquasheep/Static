@@ -21,8 +21,6 @@ public class WorldRenderer {
 	public WorldRenderer(World world) {
 		this.world = world;
 		renderer = new ShapeRenderer();
-		float width = world.getWidth();
-		float height = world.getHeight();
 		tv = new Texture(Gdx.files.internal("images/tvTexture.png"));
 		spriteBatch = new SpriteBatch();
 		font = new BitmapFont();
@@ -32,11 +30,12 @@ public class WorldRenderer {
 		renderer.begin(ShapeType.Point);
 		for (StaticPixel pixel : world.getPixels()) {
 			//Only render if it is time for that pixel to render, should save cpu
-			if (frameCounter >= pixel.getFlickerRate() && !pixel.getPaused()) {
+			if (frameCounter >= pixel.getFlickerRate()) {
 				renderer.setColor(pixel.getColor());
 				renderer.point(pixel.getPosition().x, pixel.getPosition().y,0);
 			}
 		}
+			
 		//Render the tv screen, and the controls
 		renderer.end();
 		spriteBatch.begin();
@@ -47,20 +46,20 @@ public class WorldRenderer {
 		renderText();
 		spriteBatch.end();
 		
-//		if (world.getToolSelection().equals("circle")) {
-//		//TODO currently, circle renders faster than background and therefore lags, need to undo circle some way
-//			renderer.begin(ShapeType.Circle);
-//			renderer.setColor(new Color(1f,0f,0f,0.3f));
-//			renderer.circle(Gdx.input.getX(), world.getHeight()-Gdx.input.getY()+100, world.getVolume());
-//			renderer.end();
-//		} else if (world.getToolSelection().equals("rect")) {
-//			renderer.begin(ShapeType.Rectangle);
-//			renderer.setColor(new Color(1f,0f,0f,0.1f));
-//			renderer.rect(Gdx.input.getX()-world.getVolume()/2, 
-//					world.getHeight()-Gdx.input.getY()-world.getVolume()/2+100, 
-//					world.getVolume(), world.getVolume());
-//			renderer.end();
-//		}
+		//Render the tool reticle either circle or rect
+		if (world.getToolSelection().equals("circle")) {
+			renderer.begin(ShapeType.Circle);
+			renderer.setColor(new Color(1f,0f,0f,0.3f));
+			renderer.circle(Gdx.input.getX(), world.getHeight()-Gdx.input.getY()+100, world.getVolume());
+			renderer.end();
+		} else if (world.getToolSelection().equals("rect")) {
+			renderer.begin(ShapeType.Rectangle);
+			renderer.setColor(new Color(1f,0f,0f,0.1f));
+			renderer.rect(Gdx.input.getX()-world.getVolume()/2, 
+					world.getHeight()-Gdx.input.getY()-world.getVolume()/2+100, 
+					world.getVolume(), world.getVolume());
+			renderer.end();
+		}
 	}
 	
 	/** Renders UI text */
