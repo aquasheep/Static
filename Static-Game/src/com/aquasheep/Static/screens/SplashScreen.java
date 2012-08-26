@@ -7,6 +7,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 import com.aquasheep.Static.StaticGame;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -20,16 +21,19 @@ import com.badlogic.gdx.utils.Scaling;
 public class SplashScreen extends AbstractScreen {
 	
 	Stage stage;
+	Sound sound;
 	
 	public SplashScreen(StaticGame game) {
 		super(game);
 		stage = new Stage();
+		sound = Gdx.audio.newSound(Gdx.files.internal("sounds/StaticIntro.ogg"));
 	}
 	
 	@Override
 	public void show() {
 		super.show();
 		Gdx.input.setInputProcessor(stage);
+		sound.play();
 	}
 	
 	@Override
