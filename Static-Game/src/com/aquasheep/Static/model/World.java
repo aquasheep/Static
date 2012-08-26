@@ -1,8 +1,8 @@
 package com.aquasheep.Static.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -14,9 +14,11 @@ public class World {
 	private float volume;
 	private Tools tool = Tools.PAUSE;
 	private Circle toolCircle;
+	private Rectangle toolRect;
 	/** Which color channel the color tool is currently using */
 	private int currentColorChannel = 7;
 	private boolean rendering = true;
+	private String toolSelection = "circle";
 	
 	public enum Tools {
 		PAUSE,COLOR,BRIGHTNESS
@@ -39,6 +41,7 @@ public class World {
 		volume = 10;
 		//TODO render this instead of a new circle in the renderer
 		toolCircle = new Circle(Gdx.input.getX(),Gdx.input.getY(),volume);
+		toolRect = new Rectangle(Gdx.input.getX()-volume/2,Gdx.input.getY()-volume/2,volume,volume);
 	}
 	
 	/** Calls update function on every StaticPixel object in world */
@@ -46,11 +49,19 @@ public class World {
 		for (StaticPixel pixel : pixels) {
 			pixel.update(frameCounter);
 		}
-		toolCircle.radius = volume;
-		toolCircle.x = Gdx.input.getX();
-		//Compensate (height-) for Gdx starting in top-left when openGL is bottom-left
-		//Also compensate (+100) for tv frame size
-		toolCircle.y = height-Gdx.input.getY()+100;
+		//Update tool area, either circle or rect
+		if (toolSelection.equals("circle")) {
+			toolCircle.radius = volume;
+			toolCircle.x = Gdx.input.getX();
+			//Compensate (height-) for Gdx starting in top-left when openGL is bottom-left
+			//Also compensate (+100) for tv frame size
+			toolCircle.y = height-Gdx.input.getY()+100;
+		} else {
+			toolRect.x = Gdx.input.getX()-volume/2;
+			toolRect.y = height-Gdx.input.getY()-volume/2+100;
+			toolRect.height = volume;
+			toolRect.width = volume;
+		}
 	}
 	
 	public Array<StaticPixel> getPixels() {
@@ -79,7 +90,9 @@ public class World {
 	/** Applies whichever current tool is selected to toolCircle area */
 	public void applyTool(int button) {
 		for (StaticPixel pixel : pixels) {
-			if (toolCircle.contains(pixel.getPosition())) {
+			//If tool is circle, see if it contains the pixel; if it is rect, see if it contains the pixel
+			if ((toolSelection.equals("circle") && toolCircle.contains(pixel.getPosition())) 
+				|| (toolSelection.equals("rect") && toolRect.contains(pixel.getPosition().x,pixel.getPosition().y))) {
 				//If the current tool is pause and the middle mouse button was not pressed
 				//Must check middle mouse button press to avoid unintended unpausing on laptop mice
 				if (tool==Tools.PAUSE && button!=2) {
@@ -150,5 +163,13 @@ public class World {
 		else if (tool == Tools.BRIGHTNESS)
 			return "Brightness";
 		return "Invalid tool";
+	}
+	
+	public String getToolSelection() {
+		return toolSelection;
+	}
+
+	public void toggleToolSelection() {
+		toolSelection = (toolSelection.equals("circle")?"rect":"circle");
 	}
 }

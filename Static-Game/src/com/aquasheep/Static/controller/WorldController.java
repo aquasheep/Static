@@ -62,6 +62,8 @@ public class WorldController implements InputProcessor {
 				GameScreen.gameMusic.pause();
 			else
 				GameScreen.gameMusic.play();
+		} else if (keycode == Keys.ALT_LEFT || keycode == Keys.ALT_RIGHT) {
+			world.toggleToolSelection();
 		}
 		//Handle color channel changes
 		else switch(keycode) {
