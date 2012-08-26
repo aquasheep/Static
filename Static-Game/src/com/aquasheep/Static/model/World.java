@@ -79,7 +79,6 @@ public class World {
 	public void applyTool(int button) {
 		for (StaticPixel pixel : pixels) {
 			if (toolCircle.contains(pixel.getPosition())) {
-				System.out.println("Tool area contains "+pixel.getPosition());
 				//If the current tool is pause and the middle mouse button was not pressed
 				//Must check middle mouse button press to avoid unintended unpausing on laptop mice
 				if (tool==Tools.PAUSE && button!=2) {

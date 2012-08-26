@@ -30,8 +30,13 @@ public class WorldController implements InputProcessor {
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.SHIFT_LEFT)
 			world.switchTool();
+		//Arrow keys will increase tool area for people who have no mousewheel
+		else if (keycode == Keys.UP)
+			world.addToVolume(5);
+		else if (keycode == Keys.DOWN)
+			world.addToVolume(-5);
 		//Handle color channel changes
-		switch(keycode) {
+		else switch(keycode) {
 			case Keys.NUM_0:
 				world.setColorChannel(0);
 				break;
