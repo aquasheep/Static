@@ -19,6 +19,7 @@ public class World {
 	private int currentColorChannel = 7;
 	private boolean rendering = true;
 	private boolean precision = false;
+	private boolean playStaticSound = true;
 	private String toolSelection = "circle";
 	
 	public enum Tools {
@@ -206,6 +207,14 @@ public class World {
 
 	public void togglePrecisionMode() {
 		precision = !precision;
+	}
+	
+	public boolean getStaticSound() {
+		return playStaticSound;
+	}
+
+	public void toggleStaticSound() {
+		playStaticSound = !playStaticSound;
 	}
 
 }

@@ -63,7 +63,7 @@ public class WorldController implements InputProcessor {
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		game.toolChange.play();
+		if (world.getStaticSound()) game.toolChange.play();
 		if (keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT)
 			world.switchTool();
 		//Arrow keys will increase tool area for people who have no mousewheel
@@ -88,6 +88,8 @@ public class WorldController implements InputProcessor {
 		} else if (keycode==Keys.R) {
 			GameScreen.gameMusic.dispose();
 			game.setScreen(new GameScreen(game));
+		} else if (keycode == Keys.S) {
+			world.toggleStaticSound();
 		} else if (keycode == Keys.ALT_LEFT || keycode == Keys.ALT_RIGHT) {
 			world.toggleToolSelection();
 		}
