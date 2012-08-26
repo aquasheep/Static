@@ -141,4 +141,14 @@ public class World {
 	public void toggleRendering() {
 		rendering = !rendering;
 	}
+
+	public String getCurrentToolName() {
+		if (tool==Tools.PAUSE)
+			return "Pause";
+		else if (tool == Tools.COLOR)
+			return "Color";
+		else if (tool == Tools.BRIGHTNESS)
+			return "Brightness";
+		return "Invalid tool";
+	}
 }

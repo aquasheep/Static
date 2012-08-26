@@ -3,6 +3,7 @@ package com.aquasheep.Static.view;
 import com.aquasheep.Static.model.StaticPixel;
 import com.aquasheep.Static.model.World;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -40,7 +41,9 @@ public class WorldRenderer {
 		renderer.end();
 		spriteBatch.begin();
 		//Draw the tv to eliminate white space that was necessary to texture the image
-		spriteBatch.draw(tv,0,-1024+600);
+		//Draw tv only if in original 800x600 aspect ratio
+		if (world.getWidth()==700 && world.getHeight() == 500)
+			spriteBatch.draw(tv,0,-1024+600);
 		renderText();
 		spriteBatch.end();
 		
@@ -54,7 +57,7 @@ public class WorldRenderer {
 	
 	/** Renders UI text */
 	private void renderText() {
-		//Controls
+		//Controls in bottom
 		font.setScale(1.5f);
 		font.draw(spriteBatch,"Controls:",10,120);
 		font.setScale(1.0f);
@@ -63,6 +66,13 @@ public class WorldRenderer {
 				"Left/Right Arrows - Rewind/Fast-forward selected static ||| M - toggle music ||| Space - pause screen\n" +
 				"0-7 - Set color range for Color tool:\n " +
 				"0-greyscale ||| 1-red ||| 2-green ||| 3-blue ||| 4-yellow ||| 5-purple ||| 6-turquoise ||| 7-all colors", 10, 90, 780);
+		
+		//Tools in top
+		font.setScale(1.5f);
+		font.draw(spriteBatch,"Available Tools",300,world.getHeight()+90);
+		font.drawWrapped(spriteBatch,
+				"Pause        Color        Brightness\n" +
+				"           Current Tool: "+world.getCurrentToolName(),240,world.getHeight()+60,400);
 	}
 
 }
