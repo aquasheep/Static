@@ -128,6 +128,28 @@ public class World {
 	public int getColorChannel() {
 		return currentColorChannel;
 	}
+	
+	public String getColorChannelName() {
+		switch(currentColorChannel) {
+			case 0:
+				return "Greyscale";
+			case 1: 
+				return "Red";
+			case 2: 
+				return "Green";
+			case 3: 
+				return "Blue";
+			case 4: 
+				return "Yellow";
+			case 5: 
+				return "Purple";
+			case 6: 
+				return "Turquoise";
+			case 7: 
+				return "All colors";
+			default: return "None";
+		}
+	}
 
 	/** Increase rate of change for pixels in area of tool */
 	public void fastForward() {
@@ -172,4 +194,5 @@ public class World {
 	public void toggleToolSelection() {
 		toolSelection = (toolSelection.equals("circle")?"rect":"circle");
 	}
+
 }

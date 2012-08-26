@@ -79,9 +79,11 @@ public class WorldRenderer {
 		//Tools in top
 		font.setScale(1.5f);
 		font.draw(spriteBatch,"Available Tools",300,world.getHeight()+90);
-		font.drawWrapped(spriteBatch,
-				"Pause        Color        Brightness\n" +
-				"        Current Tool: "+world.getCurrentToolName(),240,world.getHeight()+60,400);
+		font.draw(spriteBatch,
+				"Pause        Color        Brightness",240,world.getHeight()+60);
+		font.draw(spriteBatch,
+				"Current Tool: "+world.getCurrentToolName()+
+				" ||| Current Color Range: "+world.getColorChannelName(),160,world.getHeight()+30);
 	}
 
 }
