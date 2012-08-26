@@ -19,8 +19,11 @@ public class WorldController implements InputProcessor {
 	}
 	
 	public void update() {
-		isMouseButtonDown();
-		isKeyDown();
+		//In precision mode, holding down mouse or keys does nothing
+		if (!world.getPrecision()) {
+			isMouseButtonDown();
+			isKeyDown();
+		}
 	}
 	
 	/** Checks to see if a mouse button is down, and if so, applies current tool */
@@ -62,6 +65,8 @@ public class WorldController implements InputProcessor {
 				GameScreen.gameMusic.pause();
 			else
 				GameScreen.gameMusic.play();
+		} else if (keycode==Keys.P){
+			world.togglePrecisionMode();
 		} else if (keycode == Keys.ALT_LEFT || keycode == Keys.ALT_RIGHT) {
 			world.toggleToolSelection();
 		}

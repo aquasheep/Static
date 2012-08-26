@@ -18,6 +18,7 @@ public class World {
 	/** Which color channel the color tool is currently using */
 	private int currentColorChannel = 7;
 	private boolean rendering = true;
+	private boolean precision = false;
 	private String toolSelection = "circle";
 	
 	public enum Tools {
@@ -193,6 +194,18 @@ public class World {
 
 	public void toggleToolSelection() {
 		toolSelection = (toolSelection.equals("circle")?"rect":"circle");
+	}
+
+	public boolean getPrecision() {
+		return precision;
+	}
+	
+	public String getPrecisionName() {
+		return (precision?"On":"Off");
+	}
+
+	public void togglePrecisionMode() {
+		precision = !precision;
 	}
 
 }
