@@ -16,9 +16,22 @@ public class WorldController implements InputProcessor {
 		this.game = game;
 		this.world = world;
 		Gdx.input.setInputProcessor(this);
+		Gdx.input.setCursorCatched(true);
 	}
 	
 	public void update() {
+		//Update the cursor: 
+		//if cursor is off the screen uncatch it; 100 is HUD size
+		int cursorX = Gdx.input.getX();
+		int cursorY = Gdx.input.getY();
+		if (cursorX < -10 || cursorX > world.getWidth()+100+10 
+				|| cursorY < -10 || cursorY > world.getHeight()+100+10) {
+				Gdx.input.setCursorCatched(false);
+				//Set position back b/c setCursorCatched changes it
+				Gdx.input.setCursorPosition(cursorX,world.getHeight()-cursorY+100);
+			//If cursor is inside screen and not catched, recatch it
+				//30 is a buffer distance to prevent infinite catch/recatch
+		}
 		//In precision mode, holding down mouse or keys does nothing
 		if (!world.getPrecision()) {
 			isMouseButtonDown();
