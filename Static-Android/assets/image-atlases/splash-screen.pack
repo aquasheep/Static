@@ -1,0 +1,12 @@
+
+splash-screen.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+StaticIcon
+  rotate: false
+  xy: 1, 1
+  size: 592, 274
+  orig: 592, 274
+  offset: 0, 0
+  index: -1
