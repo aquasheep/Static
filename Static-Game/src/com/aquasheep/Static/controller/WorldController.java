@@ -41,11 +41,16 @@ public class WorldController implements InputProcessor {
 			world.rewind();
 		else if (Gdx.input.isKeyPressed(Keys.RIGHT))
 			world.fastForward();
+		else if (Gdx.input.isKeyPressed(Keys.UP))
+			world.addToVolume(5);
+		else if (Gdx.input.isKeyPressed(Keys.DOWN))
+			world.addToVolume(-5);
 		return true;
 	}
 	
 	@Override
 	public boolean keyDown(int keycode) {
+		game.toolChange.play();
 		if (keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT)
 			world.switchTool();
 		//Arrow keys will increase tool area for people who have no mousewheel
@@ -68,6 +73,7 @@ public class WorldController implements InputProcessor {
 		} else if (keycode==Keys.P) {
 			world.togglePrecisionMode();
 		} else if (keycode==Keys.R) {
+			GameScreen.gameMusic.dispose();
 			game.setScreen(new GameScreen(game));
 		} else if (keycode == Keys.ALT_LEFT || keycode == Keys.ALT_RIGHT) {
 			world.toggleToolSelection();
