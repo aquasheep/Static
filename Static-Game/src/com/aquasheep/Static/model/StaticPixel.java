@@ -108,12 +108,26 @@ public class StaticPixel {
 		return flickerRate;
 	}
 	
+	/** Change current colorChannel attribute (affects which color ranges are allowed in static)
+	 * 
+	 * @param button - mouse button pressed
+	 * @param channel - new colorChannel
+	 */
 	public void applyColor(int button, int channel) {
 		//If not left mouse button, default to grayscale
 		if (button==0)
 			colorChannel = channel;
 		else
 			colorChannel = 0;
+	}
+
+	/** If flickerRate will remain within a reasonable range, adjust it 
+	 * 
+	 * @param add amount to adjust
+	 */
+	public void adjustFlickerRate(int add) {
+		if (flickerRate + add >= 1 && flickerRate + add <= 30)
+			flickerRate+=add;
 	}
 	
 }

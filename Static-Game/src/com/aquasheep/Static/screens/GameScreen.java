@@ -42,10 +42,12 @@ public class GameScreen extends AbstractScreen {
 		if (frameCounter == 0)
 			++timeElapsed;
 		
-		//Continue using tool if mouse button is down
-		controller.isMouseButtonDown();
-		world.updatePixels(frameCounter);
-		renderer.render(world,frameCounter);
+		//Controller.update checks to continue using tools if mouse button or keys are down
+		controller.update();
+		if (world.getRendering()) {
+			world.updatePixels(frameCounter);
+			renderer.render(world,frameCounter);
+		}
 	}
 	
 	@Override

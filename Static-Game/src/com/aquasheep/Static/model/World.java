@@ -16,6 +16,7 @@ public class World {
 	private Circle toolCircle;
 	/** Which color channel the color tool is currently using */
 	private int currentColorChannel = 7;
+	private boolean rendering = true;
 	
 	public enum Tools {
 		PAUSE,COLOR
@@ -104,5 +105,31 @@ public class World {
 	
 	public int getColorChannel() {
 		return currentColorChannel;
+	}
+
+	/** Increase rate of change for pixels in area of tool */
+	public void fastForward() {
+		for (StaticPixel pixel : pixels) {
+			if (toolCircle.contains(pixel.getPosition())) {
+				pixel.adjustFlickerRate(-1);
+			}
+		}
+	}
+	
+	/** Decrease rate of change for pixels in area of tool*/
+	public void rewind() {
+		for (StaticPixel pixel : pixels) {
+			if (toolCircle.contains(pixel.getPosition())) {
+				pixel.adjustFlickerRate(1);
+			}
+		}
+	}
+
+	public boolean getRendering() {
+		return rendering;
+	}
+	
+	public void toggleRendering() {
+		rendering = !rendering;
 	}
 }

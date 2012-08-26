@@ -17,12 +17,26 @@ public class WorldController implements InputProcessor {
 		Gdx.input.setInputProcessor(this);
 	}
 	
+	public void update() {
+		isMouseButtonDown();
+		isKeyDown();
+	}
+	
 	/** Checks to see if a mouse button is down, and if so, applies current tool */
 	public boolean isMouseButtonDown() {
 		if (Gdx.input.isButtonPressed(0))
 			world.applyTool(0);
 		else if (Gdx.input.isButtonPressed(1))
 			world.applyTool(1);
+		return true;
+	}
+	
+	/** Checks if left or right arrow keys are down to continue fast-forward/rewind operations */
+	public boolean isKeyDown() {
+		if (Gdx.input.isKeyPressed(Keys.LEFT))
+			world.rewind();
+		else if (Gdx.input.isKeyPressed(Keys.RIGHT))
+			world.fastForward();
 		return true;
 	}
 	
@@ -35,6 +49,13 @@ public class WorldController implements InputProcessor {
 			world.addToVolume(5);
 		else if (keycode == Keys.DOWN)
 			world.addToVolume(-5);
+		else if (keycode == Keys.LEFT)
+			world.rewind();
+		else if (keycode == Keys.RIGHT)
+			world.fastForward();
+		//Pause/resume the entire screen on spacebar hit 
+		else if (keycode == Keys.SPACE)
+			world.toggleRendering();
 		//Handle color channel changes
 		else switch(keycode) {
 			case Keys.NUM_0:
