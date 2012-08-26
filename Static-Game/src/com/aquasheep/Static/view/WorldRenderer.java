@@ -72,7 +72,7 @@ public class WorldRenderer {
 		font.setScale(1.0f);
 		font.drawWrapped(spriteBatch, 
 				"Left/Right Mouse - apply tool pos/neg ||| Shift - switch tool ||| Up/Down Arrow or Mousewheel - increase tool size\n" +
-				"Left/Right Arrows - Rewind/Fast-forward selected static     ||| M - toggle music ||| Space - pause screen\n" +
+				"Left/Right Arrows - Rewind/Fast-forward selected static     ||| M - toggle music ||| Space - pause screen ||| R - reset\n" +
 				"0-7 - Set color range for Color tool  ||| Alt - toggle circle/rectangle tool ||| P - toggle precision mode ("+world.getPrecisionName()+")\n" +
 				"0-greyscale ||| 1-red ||| 2-green ||| 3-blue ||| 4-yellow ||| 5-purple ||| 6-turquoise ||| 7-all colors", 10, 90, 780);
 		

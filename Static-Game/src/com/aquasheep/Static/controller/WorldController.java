@@ -65,8 +65,10 @@ public class WorldController implements InputProcessor {
 				GameScreen.gameMusic.pause();
 			else
 				GameScreen.gameMusic.play();
-		} else if (keycode==Keys.P){
+		} else if (keycode==Keys.P) {
 			world.togglePrecisionMode();
+		} else if (keycode==Keys.R) {
+			game.setScreen(new GameScreen(game));
 		} else if (keycode == Keys.ALT_LEFT || keycode == Keys.ALT_RIGHT) {
 			world.toggleToolSelection();
 		}
