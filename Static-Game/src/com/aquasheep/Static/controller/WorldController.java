@@ -43,7 +43,7 @@ public class WorldController implements InputProcessor {
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		if (keycode == Keys.SHIFT_LEFT)
+		if (keycode == Keys.SHIFT_LEFT || keycode == Keys.SHIFT_RIGHT)
 			world.switchTool();
 		//Arrow keys will increase tool area for people who have no mousewheel
 		else if (keycode == Keys.UP)
