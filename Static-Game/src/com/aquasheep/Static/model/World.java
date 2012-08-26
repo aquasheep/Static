@@ -19,7 +19,7 @@ public class World {
 	private boolean rendering = true;
 	
 	public enum Tools {
-		PAUSE,COLOR
+		PAUSE,COLOR,BRIGHTNESS
 	}
 	
 	//TODO add hue/saturation adjustment for brighter and darker colors
@@ -88,15 +88,24 @@ public class World {
 				else if (tool==Tools.COLOR && button!=2) {
 					pixel.applyColor(button,currentColorChannel);
 				}
+				else if (tool==Tools.BRIGHTNESS && button!=2)
+					//Left mouse button brightens
+					if (button==0)
+						pixel.adjustBrightness(0.02f);
+					//Right mouse button darkens
+					else if (button==1)
+						pixel.adjustBrightness(-0.02f);
 			}
 		}
 	}
 	
 	public void switchTool() {
-		if (tool == Tools.COLOR)
-			tool = Tools.PAUSE;
-		else if (tool == Tools.PAUSE)
+		if (tool == Tools.PAUSE)
 			tool = Tools.COLOR;
+		else if (tool == Tools.COLOR)
+			tool = Tools.BRIGHTNESS;
+		else if (tool == Tools.BRIGHTNESS)
+			tool = Tools.PAUSE;
 	}
 	
 	public void setColorChannel(int newChannel) {

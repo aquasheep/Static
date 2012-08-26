@@ -7,8 +7,13 @@ public class StaticPixel {
 
 	/** Location of pixel in x,y coordinates */
 	private Vector2 position;
+	
 	/** How often the pixel will change colors randomly (in units of frames per change) */
 	private float flickerRate;
+	
+	/** Controls how bright the colors are on average; - is darker, + is lighter, 0 is normal */
+	private float brightness = 0f;
+	
 	private Color color;
 	private boolean paused;
 	/** Which color channel is currently enabled:
@@ -37,36 +42,36 @@ public class StaticPixel {
 			switch(colorChannel) {
 				case 0:
 					//Grayscale
-					color.set(randColor1,randColor1,randColor1,1f);
+					color.set(randColor1+brightness,randColor1+brightness,randColor1+brightness,1f);
 					break;
 				case 1:
 					//Red
-					color.set(randColor1,0,0,1f);
+					color.set(randColor1+brightness,brightness,brightness,1f);
 					break;
 				case 2:
 					//Green
-					color.set(0,randColor1,0,1f);
+					color.set(brightness,randColor1+brightness,brightness,1f);
 					break;
 				case 3:
 					//Blue
-					color.set(0,0,randColor1,1f);
+					color.set(brightness,brightness,randColor1+brightness,1f);
 					break;
 				case 4:
 					//Yellow
-					color.set(randColor1,randColor2,0,1f);
+					color.set(randColor1+brightness,randColor2+brightness,brightness,1f);
 					break;
 				case 5:
 					//Purple
-					color.set(randColor1,0,randColor2,1f);
+					color.set(randColor1+brightness,brightness,randColor2+brightness,1f);
 					break;
 				case 6:
 					//Turquoise
-					color.set(0,randColor1,randColor2,1f);
+					color.set(brightness,randColor1+brightness,randColor2+brightness,1f);
 					break;
 				case 7:
 					//All colors
 					float randColor3 = (float)(Math.random()*1f);
-					color.set(randColor1,randColor2,randColor3,1f);
+					color.set(randColor1+brightness,randColor2+brightness,randColor3+brightness,1f);
 					break;
 			}
 		}
@@ -128,6 +133,15 @@ public class StaticPixel {
 	public void adjustFlickerRate(int add) {
 		if (flickerRate + add >= 1 && flickerRate + add <= 30)
 			flickerRate+=add;
+	}
+
+	public float getBrightness() {
+		return brightness;
+	}
+
+	public void adjustBrightness(float add) {
+		if (brightness+add >= -0.9 && brightness+add <= 0.9)
+			brightness += add;
 	}
 	
 }
