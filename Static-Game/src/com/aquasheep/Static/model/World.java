@@ -47,7 +47,9 @@ public class World {
 		}
 		toolCircle.radius = volume;
 		toolCircle.x = Gdx.input.getX();
-		toolCircle.y = height-Gdx.input.getY();
+		//Compensate (height-) for Gdx starting in top-left when openGL is bottom-left
+		//Also compensate (+100) for tv frame size
+		toolCircle.y = height-Gdx.input.getY()+100;
 	}
 	
 	public Array<StaticPixel> getPixels() {
