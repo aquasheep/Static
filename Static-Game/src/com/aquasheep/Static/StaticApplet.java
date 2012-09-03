@@ -11,4 +11,4 @@ public class StaticApplet extends LwjglApplet
 		super(new StaticGame(), false);
 	}
 	
-} 
+}
